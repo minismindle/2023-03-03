@@ -1,0 +1,14 @@
+	// [Knight | RefCountingBlock()]
+	
+	// [T *][RefCountingBlock*]
+
+	// RefCountBlock(useCount(shared),weakCount)
+
+	shared_ptr<Knight> spr = make_shared<Knight>();
+	weak_ptr<Knight> wpr = spr;
+
+	bool expired = wpr.expired();
+	// -> 한번에 걸쳐서 만들어짐
+
+	// [T *][RefCountingBlocking*]
+	shared_ptr<Knight> spr2 = wpr.lock();
